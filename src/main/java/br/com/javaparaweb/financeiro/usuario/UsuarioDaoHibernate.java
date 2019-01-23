@@ -40,20 +40,17 @@ public class UsuarioDaoHibernate implements UsuarioDao {
 		return (Usuario) this.session.get(Usuario.class, codigo);
 	}
 	
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> listar() {
-		List<Usuario> usuarios = new ArrayList<>();
-		String hql ="select from Usuario";
-		usuarios = this.session.createQuery(hql).list();
-		return usuarios; 
+		return this.session.createCriteria(Usuario.class).list();
+
 	}
 
 	@Override
 	public Usuario buscarPorLogin(String login) {
 		String hql = "select u from Usuario where u.login = :login";
-		Query select = this.session.createQuery(hql).setString("login", login);
+		Query select = this.session.createQuery(hql);
+		select.setString("login", login);
 		return (Usuario) select.uniqueResult();
 
 	}
