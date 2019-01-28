@@ -3,10 +3,7 @@
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory>
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">ch#r#o33</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/owe_finance</property>
-  <property name="hibernate.connection.username">root</property>
+ <property name="connection.datasource">java:/comp/env/jdbc/owe_finance</property>
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>

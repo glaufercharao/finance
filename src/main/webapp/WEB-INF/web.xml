@@ -10,4 +10,28 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
+  <resource-ref>
+  	<description>DataSource Finance</description>
+  	<res-ref-name>jdbc/owe_finance</res-ref-name>
+  	<res-type>javax.sql.DataSource</res-type>
+  	<res-auth>Container</res-auth>
+  </resource-ref>
+  <context-param>
+  		<param-name>ContextConfigContext</param-name>
+  		<param-value>
+  			/WEB-INF/ApplicationContext.xml
+  			/WEB-INF/ApplicationContext-security.xml
+  		</param-value>	
+  </context-param>
+  <filter>
+  	<filter-name>springSecurityFilterChain</filter-name>
+  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>springSecurityFilterChain</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listner>
+  	<listner-class>org.springframework.web.context.ContextLoaderListner</listner-class>
+  </listner>
 </web-app>
