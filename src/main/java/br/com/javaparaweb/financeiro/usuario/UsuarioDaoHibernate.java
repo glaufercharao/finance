@@ -1,6 +1,5 @@
 package br.com.javaparaweb.financeiro.usuario;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -53,10 +52,10 @@ public class UsuarioDaoHibernate implements UsuarioDao {
 
 	@Override
 	public Usuario buscarPorLogin(String login) {
-		String hql = "select u from Usuario where u.login = :login";
-		Query select = this.session.createQuery(hql);
-		select.setString("login", login);
-		return (Usuario) select.uniqueResult();
+		String hql = "select u from Usuario u where u.login = :login";
+		Query consulta = this.session.createQuery(hql);
+		consulta.setString("login", login);
+		return (Usuario) consulta.uniqueResult();
 
 	}
 

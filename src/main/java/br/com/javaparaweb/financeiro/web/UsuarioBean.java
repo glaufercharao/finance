@@ -2,13 +2,10 @@ package br.com.javaparaweb.financeiro.web;
 
 import java.util.List;
 import java.util.Set;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.interceptor.ExcludeClassInterceptors;
-
 import br.com.javaparaweb.financeiro.usuario.Usuario;
 import br.com.javaparaweb.financeiro.usuario.UsuarioRN;
 
@@ -28,7 +25,7 @@ public class UsuarioBean {
 		this.destinoSalvar = "usuariosucesso";
 		this.usuario = new Usuario();
 		this.usuario.setAtivo(true);
-		return "usuario";
+		return "/publico/usuario";
 	}
 	public String salvar() {
 		FacesContext context =FacesContext.getCurrentInstance();
