@@ -1,10 +1,9 @@
 package br.com.javaparaweb.financeiro.conta;
-import java.util.List;
 
+import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-
 import br.com.javaparaweb.financeiro.usuario.Usuario;
 
 public class ContaDaoHibernate implements ContaDao {

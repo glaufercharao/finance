@@ -6,6 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import br.com.javaparaweb.financeiro.conta.Conta;
+import br.com.javaparaweb.financeiro.conta.ContaRN;
 import br.com.javaparaweb.financeiro.usuario.Usuario;
 import br.com.javaparaweb.financeiro.usuario.UsuarioRN;
 
@@ -17,16 +19,19 @@ public class UsuarioBean {
 	private String confirmarSenha;
 	private List<Usuario> lista;
 	private String destinoSalvar;
+	private Conta conta = new Conta();
 	
 	public UsuarioBean() {
 		
 	}
+	
 	public String novo() {
 		this.destinoSalvar = "usuariosucesso";
 		this.usuario = new Usuario();
 		this.usuario.setAtivo(true);
 		return "/publico/usuario";
 	}
+	
 	public String salvar() {
 		FacesContext context =FacesContext.getCurrentInstance();
 		
@@ -36,8 +41,16 @@ public class UsuarioBean {
 			context.addMessage(null, message);
 			return null;
 		}
+		
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
+		
+		if(this.conta.getDescricao() != null) {
+			this.conta.setUsuario(this.usuario);
+			this.conta.setFavorita(true);
+			ContaRN contaRN = new ContaRN();
+			contaRN.salvar(this.conta);
+		}
 		return this.destinoSalvar;
 	}
 	
@@ -45,12 +58,14 @@ public class UsuarioBean {
 		this.confirmarSenha =this.usuario.getSenha();
 		return "/publico/usuario";
 	}
+	
 	public String excluir(){
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.excluir(this.usuario);
 		this.lista = null;
 		return null;	
 	}
+	
 	public String ativar() {
 		if(this.usuario.isAtivo()) {
 			this.usuario.setAtivo(false);			
@@ -61,6 +76,7 @@ public class UsuarioBean {
 		usuarioRN.salvar(this.usuario);
 		return null;
 	}
+	
 	public List<Usuario> getLista(){
 		if(this.lista == null) {
 			UsuarioRN usuarioRN = new UsuarioRN();
@@ -68,6 +84,7 @@ public class UsuarioBean {
 		}
 		return this.lista;
 	}
+	
 	public String atribuiPermissao(Usuario usuario, String permissao) {
 		this.usuario = usuario;
 		Set<String> permissoes =this.usuario.getPermissao();
@@ -79,7 +96,6 @@ public class UsuarioBean {
 		return null;
 	}
 	
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -101,6 +117,12 @@ public class UsuarioBean {
 	public void setDestinoSalvar(String destinoSalvar) {
 		this.destinoSalvar = destinoSalvar;
 	}
-	
 
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
 }

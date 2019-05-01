@@ -4,7 +4,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-
 import br.com.javaparaweb.financeiro.conta.Conta;
 import br.com.javaparaweb.financeiro.conta.ContaRN;
 
@@ -21,7 +20,7 @@ public class ContaBean {
 		ContaRN contaRN = new ContaRN();
 		contaRN.salvar(this.selecionada);
 		this.selecionada = new Conta();
-		this. lista = null;
+		this.lista = null;
 		return null;
 	}
 	
@@ -39,6 +38,7 @@ public class ContaBean {
 		this.selecionada = new Conta();
 		return null;
 	}
+	
 	public List<Conta> getLista() {
 		if(this.lista == null) {
 			ContaRN contaRN = new ContaRN();
@@ -50,6 +50,7 @@ public class ContaBean {
 	public Conta getSelecionada() {
 		return selecionada;
 	}
+	
 	public void setSelecionada(Conta selecionada) {
 		this.selecionada = selecionada;
 	}
@@ -57,9 +58,8 @@ public class ContaBean {
 	public ContextoBean getContextoBean() {
 		return contextoBean;
 	}
+	
 	public void setContextoBean(ContextoBean contextoBean) {
 		this.contextoBean = contextoBean;
-	}
-
-	
+	}	
 }

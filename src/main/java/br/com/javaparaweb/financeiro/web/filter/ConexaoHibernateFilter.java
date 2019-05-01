@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebFilter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 import br.com.javaparaweb.financeiro.util.HibernateUtil;
 
 @WebFilter(urlPatterns = { "*.jsf" })

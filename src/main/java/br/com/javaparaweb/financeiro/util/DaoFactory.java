@@ -9,6 +9,7 @@ public class DaoFactory {
 		usuarioDao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return usuarioDao;
 	}
+	
 	public static ContaDao criarContaDao() {
 		ContaDaoHibernate contaDao = new ContaDaoHibernate();
 		contaDao.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
